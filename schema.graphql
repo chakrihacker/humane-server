@@ -14,6 +14,7 @@ type Mutation {
 
 type Query {
   me: User
+  status: String
 }
 
 type User {
