@@ -59,6 +59,7 @@ export interface NexusGenFieldTypes {
     email: string; // String!
     id: number; // Int!
     name: string | null; // String
+    password: string; // String!
   }
 }
 

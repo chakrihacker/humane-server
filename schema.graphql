@@ -20,4 +20,5 @@ type User {
   email: String!
   id: Int!
   name: String
+  password: String!
 }

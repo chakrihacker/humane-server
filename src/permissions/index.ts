@@ -13,5 +13,6 @@ export const permissions = shield({
     me: rules.isAuthenticatedUser,
   },
   Mutation: {
+    
   },
 })
