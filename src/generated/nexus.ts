@@ -45,6 +45,7 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
+  DateTime: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -75,9 +76,12 @@ export interface NexusGenFieldTypes {
   }
   Transaction: { // field return type
     amount: number; // Float!
+    createdAt: any; // DateTime!
     id: number; // Int!
     items: string[]; // [String!]!
+    merchant: NexusGenRootTypes['Merchant']; // Merchant!
     merchantId: number; // Int!
+    updatedAt: any; // DateTime!
   }
   User: { // field return type
     email: string; // String!
@@ -119,7 +123,7 @@ export type NexusGenEnumNames = never;
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 

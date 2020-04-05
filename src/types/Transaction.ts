@@ -1,4 +1,8 @@
-import { objectType } from "nexus";
+import { objectType, arg, core } from "nexus";
+
+const dateTimeArg = (
+  opts: core.NexusArgConfig<'DateTime'>
+) => arg({ ...opts, type: "DateTime" })
 
 export const Transaction = objectType({
   name: "Transaction",
@@ -6,7 +10,10 @@ export const Transaction = objectType({
     t.model.id();
     t.model.items();
     t.model.amount();
-    t.model.merchantId();
+		t.model.merchantId();
+		t.model.merchant();
+		t.model.createdAt();
+		t.model.updatedAt();
   },
 });
 

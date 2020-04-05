@@ -7,6 +7,8 @@ type AuthPayload {
   user: User!
 }
 
+scalar DateTime
+
 type Merchant {
   id: Int!
   name: String!
@@ -31,9 +33,12 @@ type SpendHistory {
 
 type Transaction {
   amount: Float!
+  createdAt: DateTime!
   id: Int!
   items: [String!]!
+  merchant: Merchant!
   merchantId: Int!
+  updatedAt: DateTime!
 }
 
 type User {
