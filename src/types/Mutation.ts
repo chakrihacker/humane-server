@@ -52,8 +52,7 @@ export const Mutation = mutationType({
           user,
         }
       },
-		})
-		
+    })
 		
 	}
 })

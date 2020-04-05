@@ -30,8 +30,10 @@ export interface NexusGenRootTypes {
     token: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
+  Merchant: client.Merchant;
   Mutation: {};
   Query: {};
+  Transaction: client.Transaction;
   User: client.User;
   String: string;
   Int: number;
@@ -48,13 +50,24 @@ export interface NexusGenFieldTypes {
     token: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
+  Merchant: { // field return type
+    id: number; // Int!
+    name: string; // String!
+  }
   Mutation: { // field return type
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
   Query: { // field return type
     me: NexusGenRootTypes['User'] | null; // User
+    spend_history: NexusGenRootTypes['Transaction'][] | null; // [Transaction!]
     status: string | null; // String
+  }
+  Transaction: { // field return type
+    amount: number; // Float!
+    id: number; // Int!
+    items: string[]; // [String!]!
+    merchantId: number; // Int!
   }
   User: { // field return type
     email: string; // String!
@@ -83,7 +96,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthPayload" | "Mutation" | "Query" | "User";
+export type NexusGenObjectNames = "AuthPayload" | "Merchant" | "Mutation" | "Query" | "Transaction" | "User";
 
 export type NexusGenInputNames = never;
 

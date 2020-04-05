@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 export interface Context {
   prisma: PrismaClient
-  request: any
+  req: any
 }
 
 export function createContext(request: any) {
