@@ -1,5 +1,5 @@
-import { queryType } from "nexus";
-import { getUserId } from "../utils";
+import { queryType, intArg, stringArg } from "nexus";
+import { getUserId, paginateResults } from "../utils";
 
 export const Query = queryType({
   definition(t) {
@@ -24,17 +24,36 @@ export const Query = queryType({
       },
     });
 
-    t.list.field("spend_history", {
-      type: "Transaction",
+    t.field("spend_history", {
+      type: "SpendHistory",
+      args: {
+        cursor: intArg({required: false, default: undefined})
+      },
       nullable: true,
-      resolve: (parent, args, ctx) => {
-        const userId = getUserId(ctx);
-        console.log(userId)
-        return ctx.prisma.transaction.findMany({
-          where: {
-            userId: Number(userId)
-          }
-        });
+      resolve: async (parent, args, ctx) => {
+        try {
+          const userId = getUserId(ctx);
+          const spends = await ctx.prisma.transaction.findMany({
+            where: {
+              userId: Number(userId),
+              id: {
+                gt: args.cursor
+              }
+            },
+            first: 10,
+            include: {
+              merchant: true
+            }
+          });
+  
+          return {
+            spends: spends,
+            hasMore: true,
+            cursor: spends.length ? spends[spends.length - 1].id.toString() : null
+          };
+        } catch (e) {
+          throw new Error(e)
+        }
       },
     });
   },

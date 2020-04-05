@@ -19,8 +19,14 @@ type Mutation {
 
 type Query {
   me: User
-  spend_history: [Transaction!]
+  spend_history(cursor: Int): SpendHistory
   status: String
+}
+
+type SpendHistory {
+  cursor: String
+  hasMore: Boolean!
+  spends: [Transaction!]!
 }
 
 type Transaction {

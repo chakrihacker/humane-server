@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+// @ts-ignore-next-line
 import faker from "faker"
 
 const prisma = new PrismaClient()

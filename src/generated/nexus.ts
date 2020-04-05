@@ -33,6 +33,11 @@ export interface NexusGenRootTypes {
   Merchant: client.Merchant;
   Mutation: {};
   Query: {};
+  SpendHistory: { // root type
+    cursor?: string | null; // String
+    hasMore: boolean; // Boolean!
+    spends: NexusGenRootTypes['Transaction'][]; // [Transaction!]!
+  }
   Transaction: client.Transaction;
   User: client.User;
   String: string;
@@ -60,8 +65,13 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     me: NexusGenRootTypes['User'] | null; // User
-    spend_history: NexusGenRootTypes['Transaction'][] | null; // [Transaction!]
+    spend_history: NexusGenRootTypes['SpendHistory'] | null; // SpendHistory
     status: string | null; // String
+  }
+  SpendHistory: { // field return type
+    cursor: string | null; // String
+    hasMore: boolean; // Boolean!
+    spends: NexusGenRootTypes['Transaction'][]; // [Transaction!]!
   }
   Transaction: { // field return type
     amount: number; // Float!
@@ -89,6 +99,11 @@ export interface NexusGenArgTypes {
       password: string; // String!
     }
   }
+  Query: {
+    spend_history: { // args
+      cursor?: number | null; // Int
+    }
+  }
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
@@ -96,7 +111,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthPayload" | "Merchant" | "Mutation" | "Query" | "Transaction" | "User";
+export type NexusGenObjectNames = "AuthPayload" | "Merchant" | "Mutation" | "Query" | "SpendHistory" | "Transaction" | "User";
 
 export type NexusGenInputNames = never;
 
