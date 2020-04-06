@@ -7,6 +7,16 @@ type AuthPayload {
   user: User!
 }
 
+type ClientContacts {
+  address: String
+  companyName: String
+  createdAt: DateTime!
+  id: Int!
+  industry: String
+  name: String!
+  title: String
+}
+
 scalar DateTime
 
 type Merchant {
@@ -20,6 +30,7 @@ type Mutation {
 }
 
 type Query {
+  client_contacts: [ClientContacts!]
   me: User
   spend_history(cursor: Int): SpendHistory
   status: String

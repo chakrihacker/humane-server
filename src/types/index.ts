@@ -4,3 +4,4 @@ export * from "./User";
 export * from "./AuthPayload";
 export * from "./Merchant";
 export * from "./Transaction";
+export * from "./ClientContact"

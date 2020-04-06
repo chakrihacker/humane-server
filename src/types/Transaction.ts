@@ -1,8 +1,4 @@
-import { objectType, arg, core } from "nexus";
-
-const dateTimeArg = (
-  opts: core.NexusArgConfig<'DateTime'>
-) => arg({ ...opts, type: "DateTime" })
+import { objectType } from "nexus";
 
 export const Transaction = objectType({
   name: "Transaction",

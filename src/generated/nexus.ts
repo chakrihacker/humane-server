@@ -30,6 +30,7 @@ export interface NexusGenRootTypes {
     token: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
+  ClientContacts: client.ClientContacts;
   Merchant: client.Merchant;
   Mutation: {};
   Query: {};
@@ -56,6 +57,15 @@ export interface NexusGenFieldTypes {
     token: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
+  ClientContacts: { // field return type
+    address: string | null; // String
+    companyName: string | null; // String
+    createdAt: any; // DateTime!
+    id: number; // Int!
+    industry: string | null; // String
+    name: string; // String!
+    title: string | null; // String
+  }
   Merchant: { // field return type
     id: number; // Int!
     name: string; // String!
@@ -65,6 +75,7 @@ export interface NexusGenFieldTypes {
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
   Query: { // field return type
+    client_contacts: NexusGenRootTypes['ClientContacts'][] | null; // [ClientContacts!]
     me: NexusGenRootTypes['User'] | null; // User
     spend_history: NexusGenRootTypes['SpendHistory'] | null; // SpendHistory
     status: string | null; // String
@@ -115,7 +126,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthPayload" | "Merchant" | "Mutation" | "Query" | "SpendHistory" | "Transaction" | "User";
+export type NexusGenObjectNames = "AuthPayload" | "ClientContacts" | "Merchant" | "Mutation" | "Query" | "SpendHistory" | "Transaction" | "User";
 
 export type NexusGenInputNames = never;
 

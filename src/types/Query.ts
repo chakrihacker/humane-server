@@ -40,7 +40,7 @@ export const Query = queryType({
                 gt: args.cursor
               }
             },
-            first: 10,
+            first: 25,
             include: {
               merchant: true
             }
@@ -56,5 +56,13 @@ export const Query = queryType({
         }
       },
     });
+
+    t.list.field("client_contacts", {
+      type: "ClientContacts",
+      nullable: true,
+      resolve: (parent, args, ctx) => {
+        return ctx.prisma.clientContacts.findMany({})
+      }
+    })
   },
 });
